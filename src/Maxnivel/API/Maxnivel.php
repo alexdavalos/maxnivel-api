@@ -8,7 +8,7 @@ class MaxNivel
     /**
      * @var bool
      */
-    public $debug = true;
+    public $debug = false;
     private $is_auth = true;
     /**
      * @var Request
