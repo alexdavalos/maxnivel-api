@@ -30,8 +30,8 @@ class ClienteResponse extends BaseResponse
 
         return $this;
     }
-    
-    
+
+
     /**
      * @return mixed
      */
@@ -55,7 +55,7 @@ class ClienteResponse extends BaseResponse
      */
     public function setEmail($cliente_email)
     {
-        $this->email = (string)$cliente_email;
+        $this->email = (string) $cliente_email;
     }
 
     /**
@@ -72,10 +72,10 @@ class ClienteResponse extends BaseResponse
      */
     public function setNome($cliente_nome)
     {
-        $this->first_name = (string)$cliente_nome;
+        $this->first_name = (string) $cliente_nome;
     }
 
-  
+
     /**
      * @return mixed
      */
@@ -87,7 +87,7 @@ class ClienteResponse extends BaseResponse
 
     public function setTelefone($cliente_telefone)
     {
-        $this->telefone = (string)$cliente_telefone;
+        $this->telefone = (string) $cliente_telefone;
     }
 
     /**
@@ -101,6 +101,6 @@ class ClienteResponse extends BaseResponse
 
     public function setStatus($cliente_status)
     {
-        $this->status = (string)$cliente_status;
+        $this->status = (string) $cliente_status;
     }
 }
