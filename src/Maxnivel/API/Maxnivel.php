@@ -1,4 +1,5 @@
 <?php
+
 namespace MaxNivel\API;
 
 use function GuzzleHttp\json_decode;
@@ -18,7 +19,7 @@ class MaxNivel
      * @var
      */
     private $client_secret;
-     /**
+    /**
      * @var
      */
     private $grant_type;
@@ -154,6 +155,8 @@ class MaxNivel
     //public function Pedido(Transaction $transaction, $item = [])
     public function EnviarPedido(Pedido $pedido, PedidoIten $iten)
     {
+        $response = "";
+
         try {
             $request = new Request($this);
             $response = $request->post($this, "/api/v1/pedidos", $pedido->toJSON());
@@ -166,11 +169,13 @@ class MaxNivel
 
             return $error;
         }
-                
-        $pedido_id = json_decode($response)->id;
+
+        $pedido_id = $response["id"]; //json_decode($response)->id;
         $save_plan = $this->ItenPedido($pedido_id, $iten);
 
-        return $save_plan;
+        $response = new BaseResponse();
+        $response->mapperJson($save_plan);
+        return $response;
     }
 
     /**
@@ -181,7 +186,7 @@ class MaxNivel
     public function ItenPedido($pedidoID, $iten)
     {
         try {
-            $url_path = "/api/v1/pedidos/". (int)$pedidoID ."/itens";
+            $url_path = "/api/v1/pedidos/" . (int) $pedidoID . "/itens";
             $request = new Request($this);
             $response = $request->post($this, $url_path, $iten->toJSON());
             if ($this->debug)
@@ -193,9 +198,7 @@ class MaxNivel
 
             return $error;
         }
-        
+
         return $response;
     }
-
 }
-
