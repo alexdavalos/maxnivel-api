@@ -15,8 +15,8 @@ class Distribuidor implements \JsonSerializable
     public function jsonSerialize()
     {
 
-        $vars = get_object_vars ($this);
-        $vars_clear = array_filter ($vars, function ( $value ) {
+        $vars = get_object_vars($this);
+        $vars_clear = array_filter($vars, function ($value) {
             return null !== $value;
         });
 
@@ -41,12 +41,12 @@ class Distribuidor implements \JsonSerializable
      */
     public function getDistribuidorAPI(MaxNivel $credentials, $query = [])
     {
-        
-        try{
+
+        try {
 
             $data = [];
 
-            if(!empty($query)){
+            if (!empty($query)) {
                 $data = [
                     'query' => $query
                 ];
@@ -54,7 +54,6 @@ class Distribuidor implements \JsonSerializable
 
             $request = new Request($credentials);
             $response = $request->get($credentials, "/api/v1/distribuidores", $data);
-
         } catch (\Exception $e) {
 
             $error = new BaseResponse();
@@ -62,11 +61,9 @@ class Distribuidor implements \JsonSerializable
 
             return $error;
         }
-    
+
         $distribuidor = new DistribuidorResponse();
         $distribuidor->mapperJson($response["distribuidores"]);
         return $distribuidor;
-
     }
-
 }
