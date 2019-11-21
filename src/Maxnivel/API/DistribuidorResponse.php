@@ -12,24 +12,26 @@ class DistribuidorResponse extends BaseResponse
     /**
      * @var
      */
-    protected $id;
-    protected $patrocinador_id;
-    protected $cpf;
-    protected $cnpj;
-    protected $status;
-    protected $rg;
-    protected $usuario; //sobrenome do cliente no pedido
-    protected $nome;
-    protected $nit;
-    protected $ie;
-    protected $razao_social;
-    protected $nome_fantasia;
-    protected $cidade;
-    protected $bairro;
-    protected $endereco;
-    protected $complemento;
-    protected $numero;
-    protected $telefones;
+    public $id;
+    public $patrocinador_id;
+    public $cpf;
+    public $cnpj;
+    public $status;
+    public $rg;
+    public $usuario; //sobrenome do cliente no pedido
+    public $nome;
+    public $nit;
+    public $ie;
+    public $razao_social;
+    public $nome_fantasia;
+    public $cidade;
+    public $bairro;
+    public $endereco;
+    public $complemento;
+    public $numero;
+    public $telefones;
+    public $email;
+    public $cep;
 
 
     /**
@@ -321,5 +323,37 @@ class DistribuidorResponse extends BaseResponse
     public function setTeledonesDistribuidor($telefones_distribuidor)
     {
         $this->telefones = $telefones_distribuidor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailDistribuidor()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setEmailDistribuidor($email_distribuidor)
+    {
+        $this->email = $email_distribuidor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCepDistribuidor()
+    {
+        return $this->cep;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setCepDistribuidor($cep_distribuidor)
+    {
+        $this->cep = $cep_distribuidor;
     }
 }
