@@ -5,13 +5,15 @@ namespace MaxNivel\API;
 
 class PedidoIten implements \JsonSerializable
 {
-     /**
+    /**
      * @var
      */
-    private $pedido_id;
+    //private $pedido_id;
     private $produto_id;
     private $quantidade;
-   
+    private $valor_unitario;
+    private $taxa;
+
 
     /**
      * Pedido constructor.
@@ -52,21 +54,21 @@ class PedidoIten implements \JsonSerializable
     /**
      * @return mixed
      */
-    public function getPedidoId()
+    /* public function getPedidoId()
     {
         return $this->pedido_id;
-    }
+    } */
 
     /**
      * @param mixed $pedido_id
      * @return pedido_iten
      */
-    public function setPedidoId($pedido_id)
+    /* public function setPedidoId($pedido_id)
     {
         $this->pedido_id = $pedido_id;
 
         return $this;
-    }
+    } */
 
     /**
      * @return mixed
@@ -108,4 +110,42 @@ class PedidoIten implements \JsonSerializable
     }
 
 
+    /**
+     * @return mixed
+     */
+    public function getValorUnitario()
+    {
+        return $this->valor_unitario;
+    }
+
+    /**
+     * @param mixed $produto_id
+     * @return pedido_iten
+     */
+    public function setValorUnitario($valor_unitario)
+    {
+        $this->valor_unitario = $valor_unitario;
+
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getTaxa()
+    {
+        return $this->taxa;
+    }
+
+    /**
+     * @param mixed $produto_id
+     * @return pedido_iten
+     */
+    public function setTaxa($taxa)
+    {
+        $this->taxa = $taxa;
+
+        return $this;
+    }
 }
