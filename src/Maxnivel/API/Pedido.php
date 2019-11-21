@@ -378,7 +378,7 @@ class Pedido implements \JsonSerializable
         $this->entrega_logradouro;
     }
 
-    public function setEntregaBairro($entrega_logradouro)
+    public function setEntregaBairro($entrega_bairro)
     {
         $this->entrega_bairro = $entrega_bairro;
         return $this;
