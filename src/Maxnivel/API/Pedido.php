@@ -55,6 +55,9 @@ class Pedido implements \JsonSerializable
     private $cliente_complemento;
     private $entrega_transportadora_codigo;
     private $pagamento_metodo_codigo;
+    private $itens;
+    private $endereco_id;
+    private $patrocinador_id;
 
 
     /**
@@ -532,6 +535,43 @@ class Pedido implements \JsonSerializable
     {
         $this->pagamento_metodo_codigo;
     }
+
+    public function setItens($itens)
+    {
+        $this->itens = $itens;
+        return $this;
+    }
+
+    public function getItens()
+    {
+        $this->itens;
+    }
+
+    public function setEnderecoId($endereco_id)
+    {
+        $this->endereco_id = $endereco_id;
+        return $this;
+    }
+
+    public function getEnderecoId()
+    {
+        $this->endereco_id;
+    }
+
+
+    public function setPatrocinadorId($patrocinador_id)
+    {
+        $this->patrocinador_id = $patrocinador_id;
+        return $this;
+    }
+
+    public function getPatrocinadorId()
+    {
+        $this->patrocinador_id;
+    }
+
+
+
 
     /**
      * @return BaseResponse
