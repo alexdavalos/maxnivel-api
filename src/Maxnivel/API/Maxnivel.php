@@ -147,13 +147,62 @@ class MaxNivel
         $this->base_url = $base_url;
     }
 
+    /**
+     * @param Cliente $cliente
+     * @return mixed
+     */
+    public function CadastrarCliente(Cliente $cliente)
+    {
+        $response = "";
+
+        try {
+            $request = new Request($this);
+            $response = $request->post($this, "/api/v1/clientes", $cliente->toJSON());
+            if ($this->debug)
+                print $cliente->toJSON();
+        } catch (\Exception $e) {
+
+            $error = new BaseResponse();
+            $error->mapperJson(json_decode($e->getMessage(), true));
+
+            return $error;
+        }
+
+        $cliente = new BaseResponse();
+        $cliente->mapperJson($response);
+        return $cliente;
+    }
+
+    /**
+     * @return BaseResponse|ClienteResponse
+     */
+    public function Clientes(Cliente $data)
+    {
+        $response = "";
+
+        try {
+            $request = new Request($this);
+            $response = $request->get($this, "/api/v1/clientes", $data->toJSON());
+            if ($this->debug)
+                print $data->toJSON();
+        } catch (\Exception $e) {
+
+            $error = new BaseResponse();
+            $error->mapperJson(json_decode($e->getMessage(), true));
+
+            return $error;
+        }
+
+        $cliente = new BaseResponse();
+        $cliente->mapperJson($response);
+        return $cliente;
+    }
 
     /**
      * @param Pedido $pedido
      * @return mixed
      */
-    //public function Pedido(Transaction $transaction, $item = [])
-    public function EnviarPedido(Pedido $pedido, PedidoIten $iten)
+    public function EnviarPedido(Pedido $pedido)
     {
         $response = "";
 
@@ -170,35 +219,8 @@ class MaxNivel
             return $error;
         }
 
-        $pedido_id = $response["id"]; //json_decode($response)->id;
-        $save_plan = $this->ItenPedido($pedido_id, $iten);
-
-        $response = new BaseResponse();
-        $response->mapperJson($save_plan);
-        return $response;
-    }
-
-    /**
-     * @param integer $pedidoID
-     * @param array $iten 
-     * @return mixed iten_pedido_id
-     */
-    public function ItenPedido($pedidoID, $iten)
-    {
-        try {
-            $url_path = "/api/v1/pedidos/" . (int) $pedidoID . "/itens";
-            $request = new Request($this);
-            $response = $request->post($this, $url_path, $iten->toJSON());
-            if ($this->debug)
-                print $iten->toJSON();
-        } catch (\Exception $e) {
-
-            $error = new BaseResponse();
-            $error->mapperJson(json_decode($e->getMessage(), true));
-
-            return $error;
-        }
-
-        return $response;
+        $pedido = new BaseResponse();
+        $pedido->mapperJson($response);
+        return $pedido;
     }
 }
