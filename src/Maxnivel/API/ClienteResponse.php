@@ -13,20 +13,48 @@ class ClienteResponse extends BaseResponse
      * @var
      */
     protected $id;
-    protected $nome;
-    protected $email;
-    protected $telefone;
-    protected $status;
+    protected $endereco_id;
+    protected $distribuidor_id;
 
+    /**
+     * @return mixed
+     */
+    public function getDistribuidorId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function setDistribuidorId($distribuidor_id_response)
+    {
+        $this->id = $distribuidor_id_response;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEnderecoId()
+    {
+        return $this->endereco_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function setEnderecoId($endereco_id_response)
+    {
+        $this->endereco_id = $endereco_id_response;
+    }
 
     /**
      * @param mixed $setClienteId
      * @return Cliente
      */
-    public function setClienteId($cliente_id)
+    public function setClienteId($cliente_id_response)
     {
-        $this->id = $cliente_id;
+        $this->id = $cliente_id_response;
 
         return $this;
     }
