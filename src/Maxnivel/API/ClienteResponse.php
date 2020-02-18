@@ -59,76 +59,11 @@ class ClienteResponse extends BaseResponse
         return $this;
     }
 
-
     /**
      * @return mixed
      */
     public function getClienteId()
     {
         return $this->id;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     * @return Customer
-     */
-    public function setEmail($cliente_email)
-    {
-        $this->email = (string) $cliente_email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNome()
-    {
-        return $this->nome;
-    }
-
-    /**
-     * @param mixed $first_name
-     * @return Customer
-     */
-    public function setNome($cliente_nome)
-    {
-        $this->first_name = (string) $cliente_nome;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getTelefone()
-    {
-        return $this->telefone;
-    }
-
-
-    public function setTelefone($cliente_telefone)
-    {
-        $this->telefone = (string) $cliente_telefone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-
-    public function setStatus($cliente_status)
-    {
-        $this->status = (string) $cliente_status;
     }
 }
