@@ -26,7 +26,7 @@ class Request
         if ($credentials->debug == true)
             print_r($this->baseUrl);
 
-        if(!$credentials->getIsAuth())    
+        if (!$credentials->getIsAuth())
             return $this->auth($credentials);
     }
 
@@ -47,13 +47,12 @@ class Request
 
         $queryString = http_build_query($params);
 
-        try{
+        try {
             $response = $this->send($credentials, $url_path, 'AUTH', $queryString);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             throw new Exception($e->getMessage(), 100);
         }
 
-        
         $credentials->setAuthorizationToken($response["access_token"]);
         return $credentials;
     }
@@ -66,7 +65,7 @@ class Request
      * @return mixed
      * @throws \Exception
      */
-    
+
     private function send(MaxNivel $credentials, $url_path, $method, $json = NULL)
     {
 
@@ -80,12 +79,11 @@ class Request
             if (!is_string($value)) {
                 throw new \InvalidArgumentException('query must be a string or array');
             }
-            $url_path = $url_path .'?'. $value;
+            $url_path = $url_path . '?' . $value;
             unset($json['query']);
         }
-        
-        /** config curl */
 
+        /** config curl */
         $curl = curl_init($this->getFullUrl($url_path));
 
         $defaultCurlOptions = array(
@@ -98,19 +96,19 @@ class Request
         );
 
         if ($method == 'POST') {
-            $defaultCurlOptions[ CURLOPT_HTTPHEADER ][] = 'Authorization: Bearer ' . $credentials->getAuthorizationToken();
+            $defaultCurlOptions[CURLOPT_HTTPHEADER][] = 'Authorization: Bearer ' . $credentials->getAuthorizationToken();
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
         } elseif ($method == 'PUT') {
-            $defaultCurlOptions[ CURLOPT_HTTPHEADER ][] = 'Authorization: Bearer ' . $credentials->getAuthorizationToken();
+            $defaultCurlOptions[CURLOPT_HTTPHEADER][] = 'Authorization: Bearer ' . $credentials->getAuthorizationToken();
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PUT');
             curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
         } elseif ($method == 'GET') {
-            $defaultCurlOptions[ CURLOPT_HTTPHEADER ][] = 'Authorization: Bearer ' . $credentials->getAuthorizationToken();
-            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET'); 
+            $defaultCurlOptions[CURLOPT_HTTPHEADER][] = 'Authorization: Bearer ' . $credentials->getAuthorizationToken();
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
             curl_setopt($curl, CURLOPT_HTTPGET, true);
         } elseif ($method == 'AUTH') {
-            $defaultCurlOptions[ CURLOPT_HTTPHEADER ][0] = 'application/x-www-form-urlencoded';
+            $defaultCurlOptions[CURLOPT_HTTPHEADER][0] = 'application/x-www-form-urlencoded';
             curl_setopt($curl, CURLOPT_USERPWD, $credentials->getClientId() . ":" . $credentials->getClientSecret());
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
@@ -140,7 +138,7 @@ class Request
         }
 
         if (isset(json_decode($response)->error)) {
-            
+
             /**
              * because this API don't return status_code on the error event
              * i decide to add manually on the object response and remove status property
@@ -159,10 +157,10 @@ class Request
         }
         if (!$response) {
             print "ERROR";
-            EXIT;
+            exit;
         }
         curl_close($curl);
-       
+
 
         return json_decode($response, true);
     }
@@ -235,5 +233,4 @@ class Request
     {
         return $this->send($credentials, $url_path, 'PUT', $params);
     }
-
 }
