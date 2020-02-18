@@ -9,8 +9,6 @@ namespace MaxNivel\API;
  */
 class Exception extends \ErrorException
 {
-
-
     // custom string representation of object
     /**
      * @return string
@@ -19,6 +17,4 @@ class Exception extends \ErrorException
     {
         return "[{$this->code}]: {$this->message}\n";
     }
-
-
 }
