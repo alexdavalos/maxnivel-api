@@ -15,7 +15,7 @@ class Pedido implements \JsonSerializable
     private $pagamento_metodo_codigo;
     private $itens;
     private $endereco_pagador_id;
-    private $enderecco_entrega_id;
+    private $endereco_entrega_id;
 
     /**
      * @return mixed
@@ -114,15 +114,15 @@ class Pedido implements \JsonSerializable
     }
 
 
-    public function setEnderecoEntregaId($enderecco_entrega_id)
+    public function setEnderecoEntregaId($endereco_entrega_id)
     {
-        $this->enderecco_entrega_id = $enderecco_entrega_id;
+        $this->endereco_entrega_id = $endereco_entrega_id;
         return $this;
     }
 
     public function getEnderecoEntregaId()
     {
-        $this->enderecco_entrega_id;
+        $this->endereco_entrega_id;
     }
 
     /**
